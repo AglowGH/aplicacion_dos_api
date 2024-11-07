@@ -31,5 +31,9 @@ urlpatterns = [
     #Login
         path('token/', auth.CustomAuthToken.as_view()),
     #Logout
-        path('logout/', auth.Logout.as_view())
+        path('logout/', auth.Logout.as_view()),
+    #Admin Data
+        path('lista-admins/', users.AdminAll.as_view()),
+    #Maestro Data
+        path('lista-maestros/', maestros.MaestrosAll.as_view())
 ]
