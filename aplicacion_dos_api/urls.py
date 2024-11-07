@@ -35,5 +35,7 @@ urlpatterns = [
     #Admin Data
         path('lista-admins/', users.AdminAll.as_view()),
     #Maestro Data
-        path('lista-maestros/', maestros.MaestrosAll.as_view())
+        path('lista-maestros/', maestros.MaestrosAll.as_view()),
+    #Alumno Data
+        path('lista-alumnos/', alumnos.AlumnosAll.as_view())
 ]
