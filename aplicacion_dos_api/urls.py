@@ -37,5 +37,8 @@ urlpatterns = [
     #Maestro Data
         path('lista-maestros/', maestros.MaestrosAll.as_view()),
     #Alumno Data
-        path('lista-alumnos/', alumnos.AlumnosAll.as_view())
+        path('lista-alumnos/', alumnos.AlumnosAll.as_view()),
+        path('admins-edit/', users.AdminsViewEdit.as_view()),
+        #path('maestros-edit/', maestros.MaestrosViewEdit.as_view()),
+        #path('alumnos-edit/', alumnos.AlumnosViewEdit.as_view())
 ]
