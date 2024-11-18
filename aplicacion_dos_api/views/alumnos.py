@@ -99,6 +99,26 @@ class AlumnosView(generics.CreateAPIView):
 class AlumnosViewEdit(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
     #TODO: Poner el código del PUT
+    permission_classes = (permissions.IsAuthenticated,)
+    def put(self, request, *args, **kwargs):
+        alumno = get_object_or_404(Alumnos, id=request.data["id"])
+        alumno.matricula = request.data['matricula']
+        alumno.curp = request.data['curp']
+        alumno.rfc = request.data['rfc']
+        alumno.fecha_nacimiento = request.data['fecha_nacimiento']
+        alumno.telefono = request.data['telefono']
+        alumno.ocupacion = request.data['ocupacion']
+        alumno.save()
+        temp = alumno.user
+        temp.first_name = request.data['first_name']
+        temp.last_name = request.data["last_name"]
+        temp.save()
+
+        user = AlumnoSerializer(alumno,many=False).data
+
+        return Response(user,200)
+
+
     
     def delete(self, request, *args, **kwargs):
         alumno = get_object_or_404(Alumnos, id=request.GET.get("id"))

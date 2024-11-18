@@ -62,7 +62,7 @@ class CustomAuthToken(ObtainAuthToken):
             if role_names == 'administrador':
                 user = UserSerializer(user, many=False).data
                 user['token'] = token.key
-                user["rol"] = "Administrador"
+                user["rol"] = "administrador"
                 return Response(user,200)
             else:
                 return Response({"details":"Forbidden"},403)
