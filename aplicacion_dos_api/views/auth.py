@@ -59,7 +59,7 @@ class CustomAuthToken(ObtainAuthToken):
                 maestro["token"] = token.key
                 maestro["rol"] = "maestro"
                 return Response(maestro,200)
-            if role_names == 'Administrador':
+            if role_names == 'administrador':
                 user = UserSerializer(user, many=False).data
                 user['token'] = token.key
                 user["rol"] = "Administrador"

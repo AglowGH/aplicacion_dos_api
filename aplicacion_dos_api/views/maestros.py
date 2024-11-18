@@ -36,8 +36,8 @@ class MaestrosAll(generics.CreateAPIView):
         maestros = Maestros.objects.filter(user__is_active = 1).order_by("id")
         maestros = MaestroSerializer(maestros, many=True).data
         #Aquí convertimos los valores de nuevo a un array
-        if not maestros:
-            return Response({},400)
+        #if not maestros:
+        #    return Response({},400)
         for maestro in maestros:
             maestro["materias_json"] = json.loads(maestro["materias_json"])
 
