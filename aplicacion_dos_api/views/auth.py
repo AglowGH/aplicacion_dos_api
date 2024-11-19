@@ -59,10 +59,10 @@ class CustomAuthToken(ObtainAuthToken):
                 maestro["token"] = token.key
                 maestro["rol"] = "maestro"
                 return Response(maestro,200)
-            if role_names == 'administrador':
+            if role_names == 'Administrador':
                 user = UserSerializer(user, many=False).data
                 user['token'] = token.key
-                user["rol"] = "administrador"
+                user["rol"] = "Administrador"
                 return Response(user,200)
             else:
                 return Response({"details":"Forbidden"},403)
