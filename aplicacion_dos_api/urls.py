@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from aplicacion_dos_api.views import bootstrap
-from aplicacion_dos_api.views import users,maestros,alumnos
+from aplicacion_dos_api.views import users,maestros,alumnos,materias
 from aplicacion_dos_api.views import auth
 
 urlpatterns = [
@@ -40,5 +40,8 @@ urlpatterns = [
         path('lista-alumnos/', alumnos.AlumnosAll.as_view()),
         path('admins-edit/', users.AdminsViewEdit.as_view()),
         path('maestros-edit/', maestros.MaestrosViewEdit.as_view()),
-        path('alumnos-edit/', alumnos.AlumnosViewEdit.as_view())
+        path('alumnos-edit/', alumnos.AlumnosViewEdit.as_view()),
+    #Materia Data
+        path('materias/',materias.MateriasView.as_view()),
+        path('lista-materias/',materias.MateriasAll.as_view())
 ]

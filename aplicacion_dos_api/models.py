@@ -65,3 +65,24 @@ class Alumnos(models.Model):
 
     def __str__(self):
         return "Perfil del alumno "+self.first_name+" "+self.last_name
+    
+class Materias(models.Model):
+    nrc = models.BigAutoField(primary_key=True)
+    nombre = models.CharField(max_length=255,null=True, blank=True)
+    seccion = models.IntegerField(null=True, blank=True)
+    salon = models.CharField(max_length=255,null=True, blank=True)
+    programa_educativo = models.CharField(max_length=255,null=True, blank=True)
+    profesor_asignado = models.CharField(max_length=255,null=True, blank=True)
+    creditos = models.IntegerField(null=True, blank=True)
+    hora_inicio = models.IntegerField(null=True, blank=True)
+    minuto_inicio = models.IntegerField(null=True, blank=True)
+    hora_fin = models.IntegerField(null=True, blank=True)
+    minuto_fin = models.IntegerField(null=True, blank=True)
+    dias = models.TextField(null=True, blank=True)
+    creation = models.DateTimeField(auto_now_add=True, null=True, blank=True)
+    update = models.DateTimeField(null=True, blank=True)
+
+    def __str__(self) -> str:
+        return f"NRC: {self.nrc}"
+    
+    #['nrc','nombre','seccion','salon','programa_educativo','profesor_asignado','creditos','hora_inicio','minuto_inicio','hora_fin','minuto_fin','dias']

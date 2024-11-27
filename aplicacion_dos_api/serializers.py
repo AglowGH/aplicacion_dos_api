@@ -30,3 +30,8 @@ class AlumnoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumnos
         fields = "__all__"
+
+class MateriaSerializer(serializers.ModelSerializer):
+     class Meta:
+        model = Materias
+        fields = ['nrc','nombre','seccion','salon','programa_educativo','profesor_asignado','creditos','hora_inicio','minuto_inicio','hora_fin','minuto_fin']
