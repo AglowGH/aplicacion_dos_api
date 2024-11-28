@@ -43,5 +43,6 @@ urlpatterns = [
         path('alumnos-edit/', alumnos.AlumnosViewEdit.as_view()),
     #Materia Data
         path('materias/',materias.MateriasView.as_view()),
-        path('lista-materias/',materias.MateriasAll.as_view())
+        path('lista-materias/',materias.MateriasAll.as_view()),
+        path('materias-edit/',materias.MateriasViewEdit.as_view())
 ]
