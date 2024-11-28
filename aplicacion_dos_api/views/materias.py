@@ -85,23 +85,23 @@ class MateriasView(generics.CreateAPIView):
     
 class MateriasViewEdit(generics.CreateAPIView):
     permission_classes = (permissions.IsAuthenticated,)
-    #def put(self, request, *args, **kwargs):
-        # iduser=request.data["id"]
-        #materia = get_object_or_404(Materias, id=request.data["nrc"])
-        #maestro.id_trabajador = request.data["id_trabajador"]
-        #maestro.fecha_nacimiento = request.data["fecha_nacimiento"]
-        #maestro.telefono = request.data["telefono"]
-        #maestro.rfc = request.data["rfc"]
-        #maestro.cubiculo = request.data["cubiculo"]
-        #maestro.area_investigacion = request.data["area_investigacion"]
-        #maestro.materias_json = json.dumps(request.data["materias_json"])
-        #maestro.save()
-        #temp = maestro.user
-        #temp.first_name = request.data["first_name"]
-        #temp.last_name = request.data["last_name"]
-        #temp.save()
-        #user = MaestroSerializer(maestro, many=False).data
-        #return Response(user,200)
+    def put(self, request, *args, **kwargs):
+        materia = get_object_or_404(Materias, nrc=request.data["nrc"])
+        materia.nombre = request.data["nombre"]
+        materia.seccion = request.data["seccion"]
+        materia.salon = request.data["salon"]
+        materia.programa_educativo = request.data["programa_educativo"]
+        materia.profesor_asignado = request.data["profesor_asignado"]
+        materia.creditos = request.data["creditos"]
+        materia.hora_inicio = request.data["hora_inicio"]
+        materia.minuto_inicio = request.data["minuto_inicio"]
+        materia.hora_fin = request.data["hora_fin"]
+        materia.minuto_fin = request.data["minuto_fin"]
+        materia.dias = json.dumps(request.data["dias"])
+        materia.save()
+        response=MateriaSerializer(materia,many=False).data
+        return Response(response,200)
+        #['nrc','nombre','seccion','salon','programa_educativo','profesor_asignado','creditos','hora_inicio','minuto_inicio','hora_fin','minuto_fin','dias']
     
     def delete(self, request, *args, **kwargs):
         materia = get_object_or_404(Materias, nrc=request.GET.get("nrc"))
