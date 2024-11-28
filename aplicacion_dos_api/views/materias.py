@@ -52,7 +52,7 @@ class MateriasView(generics.CreateAPIView):
     #Registrar nuevo usuario
     @transaction.atomic
     def post(self, request, *args, **kwargs):
-
+        request.data['dias'] = json.dumps(request.data['dias'])
         materia = MateriaSerializer(data=request.data)
         if materia.is_valid():
             nrc = request.data['nrc']
@@ -62,7 +62,6 @@ class MateriasView(generics.CreateAPIView):
             if existing_subject:
                 return Response({"message":"nrc "+ nrc +", is already taken"},400)
             
-            #Para extraer de la base de datos hacer el json.load()
             #Create a subject
             materia = Materias.objects.create(
                         nrc = request.data['nrc'],
@@ -76,7 +75,7 @@ class MateriasView(generics.CreateAPIView):
                         minuto_inicio = request.data['minuto_inicio'],
                         hora_fin = request.data['hora_fin'],
                         minuto_fin = request.data['minuto_fin'],
-                        dias = json.dumps(request.data['dias'])
+                        dias = request.data['dias']
                     )
             materia.save()
 
