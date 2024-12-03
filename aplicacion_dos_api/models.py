@@ -72,7 +72,7 @@ class Materias(models.Model):
     seccion = models.IntegerField(null=True, blank=True)
     salon = models.CharField(max_length=255,null=True, blank=True)
     programa_educativo = models.CharField(max_length=255,null=True, blank=True)
-    profesor_asignado = models.CharField(max_length=255,null=True, blank=True)
+    profesor_asignado =  models.ForeignKey(Maestros, on_delete=models.CASCADE, null=False, blank=False, default=None)
     creditos = models.IntegerField(null=True, blank=True)
     hora_inicio = models.IntegerField(null=True, blank=True)
     minuto_inicio = models.IntegerField(null=True, blank=True)

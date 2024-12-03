@@ -37,6 +37,8 @@ class MateriasAll(generics.CreateAPIView):
         materias = MateriaSerializer(materias, many=True).data
         for materia in materias:
             materia["dias"] = json.loads(materia["dias"])
+            existing_maestro = Maestros.objects.filter(id=materia['profesor_asignado']).first()
+            materia['profesor_asignado'] = existing_maestro.user.first_name + existing_maestro.user.last_name
         return Response(materias, 200)
 
 
@@ -61,7 +63,9 @@ class MateriasView(generics.CreateAPIView):
 
             if existing_subject:
                 return Response({"message":"nrc "+ nrc +", is already taken"},400)
-            
+            existing_maestro = Maestros.objects.filter(id=request.data['profesor_asignado']).first()
+            if not existing_maestro:
+                return Response({"message":"That maestro does not exist"},400)
             #Create a subject
             materia = Materias.objects.create(
                         nrc = request.data['nrc'],
@@ -69,7 +73,7 @@ class MateriasView(generics.CreateAPIView):
                         seccion = request.data['seccion'],
                         salon =request.data['salon'],
                         programa_educativo = request.data['programa_educativo'],
-                        profesor_asignado = request.data['profesor_asignado'],
+                        profesor_asignado = existing_maestro,
                         creditos = request.data['creditos'],
                         hora_inicio = request.data['hora_inicio'],
                         minuto_inicio = request.data['minuto_inicio'],
